@@ -72,3 +72,17 @@ routerAdd("post", "/contacts/new", (e) => {
     });
   return e.html(200, html);
 });
+
+routerAdd("get", "/contacts/email", (e) => {
+  let email = e.request.url.query().get("email");
+  console.log(`GET /contacts/email email: ${email}`)
+  
+  const validator = require(`${__hooks}/../node_modules/validator`);
+  
+  let error = ''
+  if (!validator.isEmail(email)) {
+    error = "Invalid email";
+  }
+
+return e.html(200, error);
+});
