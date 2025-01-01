@@ -15,8 +15,7 @@
         {{ end }} 
         
         {{if .msg}}
-          <p id="hide-it" class="flash">
-        {{.msg}}</p>
+          <p id="hide-it" class="flash">{{.msg}} </p>
         <script>
             function hideIt() {
                 window.onload = function () {
@@ -28,5 +27,6 @@
             }
             hideIt()
         </script>
+        {{ end }}
     </body>
 </html>
