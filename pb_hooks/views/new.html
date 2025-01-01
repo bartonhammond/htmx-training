@@ -1,39 +1,68 @@
-{% extends 'layout.html' %}
-
-{% block content %}
+{{ define "content" }}
 
 <form action="/contacts/new" method="post">
-    <fieldset>
-        <legend>Contact Values</legend>
-        <div class="table rows">
-            <p>
-                <label for="email">Email</label>
-                <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email or '' }}">
-                <span class="error">{{ contact.errors['email'] }}</span>
-            </p>
-            <p>
-                <label for="first_name">First Name</label>
-                <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
-                <span class="error">{{ contact.errors['first'] }}</span>
-            </p>
-            <p>
-                <label for="last_name">Last Name</label>
-                <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
-                <span class="error">{{ contact.errors['last'] }}</span>
-            </p>
-            <p>
-                <label for="phone">Phone</label>
-                <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
-                <span class="error">{{ contact.errors['phone'] }}</span>
-            </p>
-        </div>
-        <button>Save</button>
-    </fieldset>
+  <fieldset>
+    <legend>Contact Values</legend>
+    <div class="table rows">
+      <p>
+        <label for="email">Email</label>
+        <input
+          required
+          name="email"
+          id="email"
+          type="text"
+          placeholder="Email"
+          value="{{ .email }}"
+        />
+        <span class="error">{{ .errors.email }}</span>
+      </p>
+      <p>
+        <label for="first">First Name</label>
+        <input
+          required
+          minlength="1"
+          maxlength="100"
+          name="first"
+          id="first"
+          type="text"
+          placeholder="First Name"
+          value="{{ .first }}"
+        />
+        <span class="error">{{ .errors.first}}</span>
+      </p>
+      <p>
+        <label for="last">Last Name</label>
+        <input
+          required
+          minlength="1"
+          maxlength="100"
+          name="last"
+          id="last"
+          type="text"
+          placeholder="Last Name"
+          value="{{ .last }}"
+        />
+        <span class="error">{{ .errors.last}}</span>
+      </p>
+      <p>
+        <label for="phone">Phone</label>
+        <input
+          required
+          name="phone"
+          id="phone"
+          type="text"
+          placeholder="Phone"
+          value="{{ .phone }}"
+        />
+        <span class="error">{{ .errors.phone }}</span>
+      </p>
+    </div>
+    <button>Save</button>
+  </fieldset>
 </form>
 
 <p>
-    <a href="/contacts">Back</a>
+  <a href="/contacts">Back</a>
 </p>
 
-
-{% endblock %}
+{{ end }}

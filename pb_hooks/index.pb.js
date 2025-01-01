@@ -1,5 +1,7 @@
-routerAdd("get", "/contacts", (e) => {
+routerAdd("get", "/contacts/", (e) => {
   let search = e.request.url.query().get("q");
+  let msg = e.request.url.query().get("msg");
+
   console.log(`search: ${search}`);
   let records;
 
@@ -48,6 +50,7 @@ routerAdd("get", "/contacts", (e) => {
     .render({
       contacts: contacts,
       search: search,
+      msg: msg,
     });
 
   return e.html(200, html);

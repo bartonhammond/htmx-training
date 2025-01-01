@@ -1,0 +1,14 @@
+{
+  "name": "htmx-training",
+  "version": "1.0.0",
+  "description": "Pocketbase htmx javascript tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.12.0"
+  }
+}

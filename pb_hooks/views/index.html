@@ -1,4 +1,7 @@
-{{ define "content" }}
+{{ define "content" }} {{if .msg}}
+<p class="flash">{{.msg}}</p>
+{{end}}
+
 <form action="/contacts" method="get" class="tool-bar">
   <label for="search">Search Contacts </label>
   <input id="search" type="search" name="q" value="{{ .search }}" />
