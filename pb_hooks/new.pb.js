@@ -6,7 +6,7 @@ routerAdd("get", "/contacts/new", (e) => {
       last: "",
       phone: "",
       email: "",
-      errors: { email: "", first: "", last: "", email: "", phone: "" },
+      errors: { email: "", first: "", last: "", phone: "" },
     });
 
   return e.html(200, html);
