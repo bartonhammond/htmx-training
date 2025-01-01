@@ -1,17 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="">
   <head>
     <title>Contact App</title>
-    <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css">
-    <link rel="stylesheet" href="/web/css/site.css">
+    <link
+      rel="stylesheet"
+      href="https://the.missing.style/v0.2.0/missing.min.css"
+    />
+    <link rel="stylesheet" href="/web/css/site.css" />
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
     <script src="/web/js/rsjs-menu.js" type="module"></script>
     <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
   </head>
   <body>
-    {{ block "content" . }}
-    default
-    {{ end }}
+    {{if .msg}}
+    <p id="hide-it" class="flash">{{.msg}}</p>
+    <script>
+      function hideIt() {
+        window.onload = function () {
+          setTimeout(function () {
+            document.getElementById("hide-it").style.display = "none";
+          }, 3000);
+        };
+      }
+      hideIt();
+    </script>
+
+    {{end}} {{ block "content" . }} default {{ end }}
   </body>
 </html>
