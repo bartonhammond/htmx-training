@@ -10,24 +10,13 @@
       <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
     </head>
     
-    <body>
+    <body hx-boost="true">
         {{ block "content" . }} 
           default 
         {{ end }} 
         
         {{if .msg}}
-          <p id="hide-it" class="flash">{{.msg}} </p>
-        <script>
-            function hideIt() {
-                window.onload = function () {
-                    setTimeout(function () {
-                        document.getElementById('hide-it').style.display =
-                            'none'
-                    }, 3000)
-                }
-            }
-            hideIt()
-        </script>
+            <p _="on click hide" class="flash">{{.msg}}</p>
         {{ end }}
     </body>
 </html>

@@ -1,10 +1,10 @@
 //View a particular contact
-routerAdd("post", "/contact/{id}/delete", (e) => {
+routerAdd("delete", "/contact/{id}/", (e) => {
   let id = e.request.pathValue("id");
 
-  console.log(`GET /contact/{id}/delete id: ${id}`);
+  console.log(`delete /contact/{id}id: ${id}`);
 
   let record = $app.findRecordById("contacts", id);
   $app.delete(record);
-  e.redirect(302, "/contacts/?msg=Contact deleted!");
+  e.redirect(303, "/contacts/?msg=Contact deleted!");
 });
