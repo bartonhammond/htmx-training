@@ -5,6 +5,7 @@
   <input type="submit" value="Search" />
 </form>
 
+{{if .contacts}}
 <table>
   <thead>
     <tr>
@@ -30,6 +31,9 @@
     {{ end }}
   </tbody>
 </table>
+{{else}}
+<p>No contacts found!</p>
+{{end}}
 
 <p>
   <a href="/contacts/new">Add Contact</a>
