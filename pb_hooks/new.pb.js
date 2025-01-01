@@ -52,7 +52,11 @@ routerAdd("post", "/contacts/new", (e) => {
     record.set("email", email);
     record.set("phone", phone);
 
+    try {
     $app.save(record);
+    } catch (e) {
+      console.log(`${e}`)
+    }
 
     e.redirect(302, "/contacts/?msg=Contact created");
   }

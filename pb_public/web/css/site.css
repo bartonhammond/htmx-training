@@ -9,6 +9,11 @@
     margin: 16px;
 }
 
+.content {
+  max-width: 1000px;
+  margin: auto;
+}
+
 table {
     width: 100%;
     margin-bottom: 12px;

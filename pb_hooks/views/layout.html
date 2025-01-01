@@ -3,20 +3,23 @@
     <head>
       <title>Contact App</title>
       <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css" />
-      <link rel="stylesheet" href="/web/css/site.css" />
+      
       <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
       <script src="/web/js/rsjs-menu.js" type="module"></script>
       <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
+      <link rel="stylesheet" href="/web/css/site.css" />
     </head>
     
     <body hx-boost="true">
-        {{ block "content" . }} 
-          default 
-        {{ end }} 
-        
-        {{if .msg}}
-            <p _="on click hide" class="flash">{{.msg}}</p>
-        {{ end }}
+        <div class="content">
+            {{ block "content" . }} 
+            default 
+            {{ end }} 
+            
+            {{if .msg}}
+                <p _="on click hide" class="flash">{{.msg}}</p>
+            {{ end }}
+        </div>
     </body>
 </html>
