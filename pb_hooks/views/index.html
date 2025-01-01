@@ -18,13 +18,17 @@
         </tr>
         </thead>
         <tbody>
+
         {{range .contacts }}
             <tr>
                 <td>{{ .first }}</td>
                 <td>{{ .last }}</td>
                 <td>{{ .phone }}</td>
                 <td>{{ .email }}</td>
-                <td><a href="/contacts/{{ .id }}/edit">Edit</a> <a href="/contacts/{{ .id }}">View</a></td>
+                <td>
+		  <a href="/contacts/{{ .id }}/edit">Edit</a>
+		  <a href="/contacts/{{ .id }}">View</a>
+		</td>
             </tr>
         {{ end }}
         </tbody>
