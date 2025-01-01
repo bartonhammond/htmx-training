@@ -1,18 +1,15 @@
-{% extends 'layout.html' %}
+{{ define "content" }}
 
-{% block content %}
-
-<h1>{{contact.first}} {{contact.last}}</h1>
+<h1>{{.first}} {{.last}}</h1>
 
 <div>
-    <div>Phone: {{contact.phone}}</div>
-    <div>Email: {{contact.email}}</div>
+  <div>Phone: {{.phone}}</div>
+  <div>Email: {{.email}}</div>
 </div>
 
 <p>
-    <a href="/contacts/{{contact.id}}/edit">Edit</a>
-    <a href="/contacts">Back</a>
+  <a href="/contacts/{{.id}}/edit">Edit</a>
+  <a href="/contacts">Back</a>
 </p>
 
-
-{% endblock %}
+{{ end}}

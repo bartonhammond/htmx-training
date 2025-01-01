@@ -2,7 +2,7 @@ routerAdd("get", "/contacts/", (e) => {
   let search = e.request.url.query().get("q");
   let msg = e.request.url.query().get("msg");
 
-  console.log(`search: ${search}`);
+  console.log(`GET /contacts search: ${search}`);
   let records;
 
   records = arrayOf(
@@ -54,4 +54,25 @@ routerAdd("get", "/contacts/", (e) => {
     });
 
   return e.html(200, html);
+});
+
+routerAdd("get", "/contact/{id}", (e) => {
+  let id = e.request.pathValue("id");
+
+  console.log(`aksdfdsfGET /contacts/{id} id: ${id}`);
+
+  if (id) {
+    let record = $app.findRecordById("contacts", id);
+
+    const html = $template
+      .loadFiles(`${__hooks}/views/layout.html`, `${__hooks}/views/show.html`)
+      .render({
+        first: record.get("first"),
+        last: record.get("last"),
+        email: record.get("email"),
+        phone: record.get("phone"),
+      });
+
+    return e.html(200, html);
+  }
 });
