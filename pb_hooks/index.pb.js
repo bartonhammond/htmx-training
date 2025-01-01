@@ -47,6 +47,7 @@ routerAdd("get", "/contacts", (e) => {
     .loadFiles(`${__hooks}/views/layout.html`, `${__hooks}/views/index.html`)
     .render({
       contacts: contacts,
+      search: search,
     });
 
   return e.html(200, html);
