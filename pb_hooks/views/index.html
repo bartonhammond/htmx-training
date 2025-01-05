@@ -5,7 +5,14 @@
 
 <form action="/contacts" method="get" class="tool-bar">
     <label for="search">Search Contacts </label>
-    <input id="search" type="search" name="q" value="{{ .search }}" />
+    <input id="search" 
+      type="search" 
+      name="q" 
+      value="{{ .search }}" 
+      hx-get="/contacts" 
+      hx-trigger="search, keyup delay:200ms changed"
+      hx-target="tbody"
+      />
     <input type="submit" value="Search" />
 </form>   
 
@@ -21,18 +28,10 @@
         </tr>
     </thead>
     <tbody>
-        {{range .contacts }}
-        <tr>
-            <td>{{ .first }}</td>
-            <td>{{ .last }}</td>
-            <td>{{ .phone }}</td>
-            <td>{{ .email }}</td>
-            <td>
-                <a href="/contact/{{ .id }}/edit">Edit</a>
-                <a href="/contact/{{ .id }}">View</a>
-            </td>
-        </tr>
-        {{ end }}
+        {{ block "rows" . }} 
+            default 
+        {{ end }} 
+
         {{ if eq (len .contacts) 10 }}
         <tr>
           <td colspan="5" style="text-align: center">
