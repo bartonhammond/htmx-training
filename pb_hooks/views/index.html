@@ -37,7 +37,13 @@
             hx-trigger="revealed"
             hx-swap="outerHTML"
             hx-select="tbody > tr"
-            hx-get="/contacts?page={{ .next }}"></span>
+            {{ if .search }}
+              hx-get="/contacts?q={{ .search }}&page={{ .next }}"
+            {{ else }}
+              hx-get="/contacts?page={{ .next }}"
+            {{ end }}
+            >
+            </span>
           </td>
         </tr>
         {{ end }}

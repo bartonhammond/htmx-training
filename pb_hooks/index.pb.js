@@ -6,12 +6,9 @@ routerAdd('get', '/contacts/', (e) => {
     console.log(`GET /contacts search: ${search} msg: ${msg} page: ${page}`)
 
     if (page === undefined || page === null || page == '') {
-      console.log(`page undefined`)
       page = 0
     } else {
-      console.log(`page not undefined |${page}|`)
       page = parseInt(page, 10)
-      console.log(`page parseInt |${page}|`)
     }
     let offset = page * 10
 
