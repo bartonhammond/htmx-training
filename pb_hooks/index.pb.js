@@ -7,12 +7,13 @@ routerAdd('get', '/contacts/', (e) => {
     console.log(
         `GET /contacts search: ${search} msg: ${msg} page: ${page} activeSearch: ${activeSearch}`
     )
-    if (page === undefined || page === null || page == '') {
+
+    if (!page) {
         page = 0
     } else {
         page = parseInt(page, 10)
     }
-    
+
     let offset = calculateOffset(page)
 
     let records = searchData(search, offset)
@@ -20,15 +21,11 @@ routerAdd('get', '/contacts/', (e) => {
     let contacts = convertRecords(records)
 
     const next = page + 1
-    let prev = page - 1
-    if (page === 0) {
-        prev = 0
-    }
 
     if (activeSearch) {
         renderContacts(contacts)
     } else {
-        renderFullPage(contacts, search, msg, page, next, prev)
+        renderFullPage(contacts, search, msg, page, next)
     }
 
     /**
@@ -52,7 +49,7 @@ routerAdd('get', '/contacts/', (e) => {
             console.log(`renderContacts error: ${e}`)
         }
     }
-    function renderFullPage(contacts, search, msg, page, next, prev) {
+    function renderFullPage(contacts, search, msg, page, next) {
         const html = $template
             .loadFiles(
                 `${__hooks}/views/layout.html`,
@@ -64,8 +61,7 @@ routerAdd('get', '/contacts/', (e) => {
                 search: search,
                 msg: msg,
                 page: page,
-                next: next,
-                prev: prev,
+                next: next
             })
 
         return e.html(200, html)
