@@ -9,12 +9,7 @@
     margin: 16px;
 }
 
-.heading {
-    max-width: 1000px;
-    margin: auto;
-}
-
-.content {
+.center {
     max-width: 1000px;
     margin: auto;
 }
