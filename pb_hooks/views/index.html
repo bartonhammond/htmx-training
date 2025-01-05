@@ -1,44 +1,56 @@
 {{ define "content" }}
 
 <form action="/contacts" method="get" class="tool-bar">
-  <label for="search">Search Contacts </label>
-  <input id="search" type="search" name="q" value="{{ .search }}" />
-  <input type="submit" value="Search" />
-</form>
+    <label for="search">Search Contacts </label>
+    <input id="search" type="search" name="q" value="{{ .search }}" />
+    <input type="submit" value="Search" />
+</form>   
 
 {{if .contacts}}
 <table>
-  <thead>
-    <tr>
-      <th>First</th>
-      <th>Last</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{range .contacts }}
-    <tr>
-      <td>{{ .first }}</td>
-      <td>{{ .last }}</td>
-      <td>{{ .phone }}</td>
-      <td>{{ .email }}</td>
-      <td>
-        <a href="/contact/{{ .id }}/edit">Edit</a>
-        <a href="/contact/{{ .id }}">View</a>
-      </td>
-    </tr>
-    {{ end }}
-  </tbody>
+    <thead>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .contacts }}
+        <tr>
+            <td>{{ .first }}</td>
+            <td>{{ .last }}</td>
+            <td>{{ .phone }}</td>
+            <td>{{ .email }}</td>
+            <td>
+                <a href="/contact/{{ .id }}/edit">Edit</a>
+                <a href="/contact/{{ .id }}">View</a>
+            </td>
+        </tr>
+        {{ end }}
+        {{ if eq (len .contacts) 10 }}
+        <tr>
+          <td colspan="5" style="text-align: center">
+          <span hx-target="closest tr"
+            hx-trigger="revealed"
+            hx-swap="outerHTML"
+            hx-select="tbody > tr"
+            hx-get="/contacts?page={{ .next }}"></span>
+          </td>
+        </tr>
+        {{ end }}
+    </tbody>
 </table>
+
 
 {{else}}
 <p>No contacts found!</p>
 {{end}}
 
 <p>
-  <a href="/contacts/new">Add Contact</a>
+    <a href="/contacts/new">Add Contact</a>
 </p>
 
 {{ end }}
