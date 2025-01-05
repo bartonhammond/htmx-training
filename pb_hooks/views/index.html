@@ -1,4 +1,7 @@
 {{ define "content" }}
+<p>
+    <a href="/contacts/new">Add Contact</a>
+</p>
 
 <form action="/contacts" method="get" class="tool-bar">
     <label for="search">Search Contacts </label>
@@ -54,9 +57,5 @@
 {{else}}
 <p>No contacts found!</p>
 {{end}}
-
-<p>
-    <a href="/contacts/new">Add Contact</a>
-</p>
 
 {{ end }}

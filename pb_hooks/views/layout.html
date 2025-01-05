@@ -12,14 +12,17 @@
     </head>
 
     <body hx-boost="true">
+        <div class="heading">
+            <h1>Contacts</h1>
+        </div>
         <div class="content">
-            {{ block "content" . }} 
-            default 
-            {{ end }} 
-            
             {{if .msg}}
                 <p _="on click hide" class="flash">{{.msg}}</p>
             {{ end }}
+
+            {{ block "content" . }} 
+            default 
+            {{ end }} 
         </div>
     </body>
 </html>
