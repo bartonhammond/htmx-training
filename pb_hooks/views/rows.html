@@ -8,6 +8,11 @@
         <td>
             <a href="/contact/{{ .id }}/edit">Edit</a>
             <a href="/contact/{{ .id }}">View</a>
+            <a href="#" 
+                hx-delete="/contact/{{ .id }}"
+                hx-swap="outerHTML"
+                hx-confirm="Are you sure you want to delete this contact?"
+                hx-target="closest tr">Delete</a>
         </td>
     </tr>
     {{ end }}
