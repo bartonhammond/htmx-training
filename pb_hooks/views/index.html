@@ -1,13 +1,15 @@
 {{ define "content" }}
 <p>
     <a href="/contacts/new">Add Contact</a>
+    <!-- could not use the lazy load because of multiple requests  -->
+    <span>({{ .count }} total Contacts)</span>
 </p>
 
 <form action="/contacts" method="get" class="tool-bar">
     <label for="search">Search Contacts </label>
     <input id="search" 
       type="search" 
-      name="q" 
+      name="q"  
       value="{{ .search }}" 
       hx-get="/contacts" 
       hx-trigger="search, keyup delay:200ms changed"
@@ -16,12 +18,12 @@
       hx-indicator="#spinner"
       />
       <input type="submit" value="Search" />
-      <img id="spinner" 
-        class="htmx-indicator"
-        src="/static/img/spinning-circles.svg"
-        alt="Request In Flight..."
-      />
-    
+      <img 
+        style="height: 20px" 
+        id="spinner" 
+        class="htmx-indicator" 
+        src="/web/img/spinning-circles.svg"/>
+       
 </form>   
 
 {{if .contacts}}
@@ -43,9 +45,9 @@
         {{ if eq (len .contacts) 10 }}
         <tr>
           <td colspan="5" style="text-align: center">
-          <span hx-target="closest tr"
-            hx-trigger="revealed"
-            hx-swap="outerHTML"
+          <button
+            hx-target="closest tr"
+            hx-swap="outerHTML show:bottom"
             hx-select="tbody > tr"
             {{ if .search }}
               hx-get="/contacts?q={{ .search }}&page={{ .next }}"
@@ -53,7 +55,8 @@
               hx-get="/contacts?page={{ .next }}"
             {{ end }}
             >
-            </span>
+            More
+            </button>
           </td>
         </tr>
         {{ end }}

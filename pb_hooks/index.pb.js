@@ -3,6 +3,7 @@ routerAdd('get', '/contacts/', (e) => {
     let msg = e.request.url.query().get('msg')
     let page = e.request.url.query().get('page')
     let activeSearch = e.request.header.get('HX-Trigger')
+    let count = $app.countRecords("contacts")
 
     console.log(
         `GET /contacts search: ${search} msg: ${msg} page: ${page} activeSearch: ${activeSearch}`
@@ -23,9 +24,9 @@ routerAdd('get', '/contacts/', (e) => {
     const next = page + 1
 
     if (activeSearch) {
-        renderContacts(contacts)
+        renderContacts(contacts, count)
     } else {
-        renderFullPage(contacts, search, msg, page, next)
+        renderFullPage(contacts, search, msg, page, next, count)
     }
 
     /**
@@ -33,7 +34,7 @@ routerAdd('get', '/contacts/', (e) => {
      * @param {*} contacts 
      * @returns 
      */
-    function renderContacts(contacts) {
+    function renderContacts(contacts, count) {
         console.log(`renderContacts`)
         try {
         const html = $template
@@ -42,13 +43,14 @@ routerAdd('get', '/contacts/', (e) => {
             )
             .render({
                 contacts: contacts,
+                count: count
             })
         return e.html(200, html)
         } catch (e) {
             console.log(`renderContacts error: ${e}`)
         }
     }
-    function renderFullPage(contacts, search, msg, page, next) {
+    function renderFullPage(contacts, search, msg, page, next, count) {
         const html = $template
             .loadFiles(
                 `${__hooks}/views/layout.html`,
@@ -60,7 +62,9 @@ routerAdd('get', '/contacts/', (e) => {
                 search: search,
                 msg: msg,
                 page: page,
-                next: next
+                next: next,
+                count: count
+
             })
 
         return e.html(200, html)
@@ -123,7 +127,7 @@ routerAdd('get', '/contacts/', (e) => {
             $app.db()
                 .select('id', 'first', 'last', 'email', 'phone')
                 .from('contacts')
-                .limit(100)
+                .limit(10)
                 .offset(offset)
                 .where($dbx.like('first', search))
                 .orWhere($dbx.like('last', search))
