@@ -38,12 +38,11 @@ routerAdd('get', '/contacts/', (e) => {
         try {
         const html = $template
             .loadFiles(
-                `${__hooks}/views/rows.html`
+                `${__hooks}/views/rows.htmx.html`
             )
             .render({
                 contacts: contacts,
             })
-        console.log(`html: ${html}`)
         return e.html(200, html)
         } catch (e) {
             console.log(`renderContacts error: ${e}`)
@@ -124,7 +123,7 @@ routerAdd('get', '/contacts/', (e) => {
             $app.db()
                 .select('id', 'first', 'last', 'email', 'phone')
                 .from('contacts')
-                .limit(10)
+                .limit(100)
                 .offset(offset)
                 .where($dbx.like('first', search))
                 .orWhere($dbx.like('last', search))

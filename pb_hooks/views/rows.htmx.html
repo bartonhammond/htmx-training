@@ -1,0 +1,12 @@
+{{range .contacts }}
+<tr>
+    <td>{{ .first }}</td>
+    <td>{{ .last }}</td>
+    <td>{{ .phone }}</td>
+    <td>{{ .email }}</td>
+    <td>
+        <a href="/contact/{{ .id }}/edit">Edit</a>
+        <a href="/contact/{{ .id }}">View</a>
+    </td>
+</tr>
+{{ end }}
