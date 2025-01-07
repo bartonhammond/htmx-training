@@ -1,4 +1,13 @@
 routerAdd('get', '/contacts/', (e) => {
+    let ip = e.realIP()
+    let realIP = e.get("realIP")
+
+    console.log(`get /contacts ip: ${ip} realIP: ${realIP}`)
+
+    if (!realIP) {
+        e.set("realIP", ip)
+    }
+
     let search = e.request.url.query().get('q')
     let msg = e.request.url.query().get('msg')
     let page = e.request.url.query().get('page')
